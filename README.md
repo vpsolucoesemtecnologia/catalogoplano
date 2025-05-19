@@ -18,7 +18,6 @@
   <p>Marque as funcionalidades que você precisa. O plano ideal aparecerá automaticamente.</p>
 
   <ul class="feature-list" id="features">
-    <!-- Lista de funcionalidades extraída do PDF -->
     <li><label><input type="checkbox" value="Dashboard"> Dashboard</label></li>
     <li><label><input type="checkbox" value="Orçamento"> Orçamento</label></li>
     <li><label><input type="checkbox" value="Pedido de Venda"> Pedido de Venda</label></li>
@@ -44,7 +43,6 @@
     const standardPrice = 140;
     const premiumPrice = 210;
 
-    // Defina arrays com funcionalidades que exigem cada plano
     const premiumFeatures = [
       "Mercado Livre",
       "Ecommerce",
