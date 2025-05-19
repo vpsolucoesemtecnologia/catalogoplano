@@ -20,7 +20,7 @@
     .plan-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
     .plan-table th, .plan-table td { border: 1px solid #ccc; padding: 8px; text-align: center; }
     .plan-table th { background: #f4f4f4; }
-    button { display: block; margin: 20px auto; padding: 10px 20px; font-size: 1em; cursor: pointer; }
+    .whatsapp-btn { display: block; width: 100%; text-align: center; margin-top: 20px; padding: 10px; background: #25D366; color: white; border: none; border-radius: 4px; font-size: 1em; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -39,9 +39,9 @@
       </div>
       <div class="two-columns">
         <div class="column">
+          <!-- Primeira metade das funcionalidades -->
           <label><input type="checkbox" value="Dashboard"> Dashboard</label>
           <label><input type="checkbox" value="Boleto/Remessa"> Boleto/Remessa</label>
-          <label><input type="checkbox" value="Número de Usuários"> Número de Usuários</label>
           <label><input type="checkbox" value="Orçamento"> Orçamento</label>
           <label><input type="checkbox" value="Pedido de Venda"> Pedido de Venda</label>
           <label><input type="checkbox" value="NFe, NFCe"> NFe, NFCe</label>
@@ -54,13 +54,14 @@
           <label><input type="checkbox" value="Contas a Pagar"> Contas a Pagar</label>
           <label><input type="checkbox" value="Importação de XML"> Importação de XML</label>
           <label><input type="checkbox" value="Fator de Conversão"> Fator de Conversão</label>
+        </div>
+        <div class="column">
+          <!-- Segunda metade das funcionalidades -->
           <label><input type="checkbox" value="Ordem de Compra"> Ordem de Compra</label>
           <label><input type="checkbox" value="Preço Atacado e Varejo"> Preço Atacado e Varejo</label>
           <label><input type="checkbox" value="Conversão CFOP"> Conversão CFOP</label>
-        </div>
-        <div class="column">
           <label><input type="checkbox" value="Ordem de Serviço"> Ordem de Serviço</label>
-          <label><input type="checkbox" value="Mercado Livre"> Integração Mercado Livre</label>
+          <label><input type="checkbox" value="Integração Mercado Livre"> Integração Mercado Livre</label>
           <label><input type="checkbox" value="WhatsApp"> WhatsApp</label>
           <label><input type="checkbox" value="Pré Venda Gerencial"> Pré Venda Gerencial</label>
           <label><input type="checkbox" value="Tela PDV Frente de Caixa"> Tela PDV Frente de Caixa</label>
@@ -68,24 +69,6 @@
           <label><input type="checkbox" value="Parametrização de Tributos"> Parametrização de Tributos</label>
           <label><input type="checkbox" value="Ecommerce"> Ecommerce</label>
           <label><input type="checkbox" value="Tabelas de Preço"> Tabelas de Preço</label>
-          <label><input type="checkbox" value="ZPOS"> ZPOS: Integração Vero, Stone, Rede, PagSeguro, Cielo, Sicredi, Caixa e BIN</label>
-          <label><input type="checkbox" value="Cadastros Gerais"> Cadastros: Clientes, Fornecedores, Transportadoras, Produtos</label>
-          <label><input type="checkbox" value="Cadastro de Kits"> Cadastro de Kits</label>
-          <label><input type="checkbox" value="Fiscal - Perfil de Tributação"> Fiscal - Perfil de Tributação</label>
-          <label><input type="checkbox" value="Suporte a Certificado A3"> Suporte a Certificado A3</label>
-          <label><input type="checkbox" value="Tabela de Preço por Cliente"> Tabela de Preço por Cliente</label>
-          <label><input type="checkbox" value="Etiquetas Personalizadas"> Etiquetas Personalizadas</label>
-          <label><input type="checkbox" value="Tabelas de Preço por Produto"> Tabelas de Preço por Produto</label>
-          <label><input type="checkbox" value="Cadastro de Grades"> Cadastro de Grades</label>
-          <label><input type="checkbox" value="Retaguarda Offline"> Retaguarda Offline (plugin nativo para SC)</label>
-          <label><input type="checkbox" value="Boleto API Sicoob"> Boleto API: Banco Sicoob</label>
-          <label><input type="checkbox" value="Boleto API Inter"> Boleto API: Banco Inter</label>
-          <label><input type="checkbox" value="Boleto API Santander"> Boleto API: Banco Santander</label>
-          <label><input type="checkbox" value="Boleto API Sicredi"> Boleto API: Sicredi</label>
-          <label><input type="checkbox" value="Plano de Contas"> Plano de Contas</label>
-          <label><input type="checkbox" value="DRE Simplificado"> DRE Simplificado</label>
-          <label><input type="checkbox" value="PIX Dinâmico Sicoob"> PIX Dinâmico: Banco Sicoob</label>
-          <label><input type="checkbox" value="Envio Automático Contador"> Envio Automático para Contador (XML de Saída/Entrada, Sintegra e SPED)</label>
         </div>
       </div>
     </div>
@@ -99,7 +82,7 @@
           <tr><td id="planName">-</td><td id="planPrice">-</td></tr>
         </tbody>
       </table>
-      <button id="fileBtn" style="display:none;">Gerar arquivo de plano</button>
+      <button id="whatsappBtn" class="whatsapp-btn" style="display:none;">Enviar no WhatsApp</button>
     </div>
   </div>
 
@@ -107,23 +90,30 @@
     const planNames = ['Essencial', 'Standard', 'Premium'];
     const planPrices = [100, 140, 210];
     const planos = {
-      0: ['Dashboard','Boleto/Remessa','Número de Usuários','Orçamento','Pedido de Venda','NFe, NFCe','MFe','Minhas Notas','Portal do Contador','Aplicativo para NFCe','Fluxo de Caixa','Contas a Receber','Contas a Pagar','Importação de XML','Fator de Conversão','Ordem de Compra','Preço Atacado e Varejo','Conversão CFOP'],
-      1: ['Ordem de Serviço','Integração Mercado Livre','WhatsApp','Pré Venda Gerencial','Tela PDV Frente de Caixa','Replicação de Dados','Parametrização de Tributos','Ecommerce','Tabelas de Preço','ZPOS','Cadastros Gerais','Cadastro de Kits','Fiscal - Perfil de Tributação','Suporte a Certificado A3','Tabela de Preço por Cliente','Etiquetas Personalizadas','Tabelas de Preço por Produto','Cadastro de Grades','Retaguarda Offline','Plano de Contas','DRE Simplificado','PIX Dinâmico: Banco Sicoob','Envio Automático Contador'],
-      2: ['Boleto API: Banco Sicoob','Boleto API: Banco Inter','Boleto API: Banco Santander','Boleto API: Sicredi']
+      0: ['Dashboard','Boleto/Remessa','Orçamento','Pedido de Venda','NFe, NFCe','MFe','Minhas Notas','Portal do Contador','Aplicativo para NFCe','Fluxo de Caixa','Contas a Receber','Contas a Pagar','Importação de XML','Fator de Conversão'],
+      1: ['Ordem de Compra','Preço Atacado e Varejo','Conversão CFOP','Ordem de Serviço','Integração Mercado Livre','WhatsApp','Pré Venda Gerencial','Tela PDV Frente de Caixa','Replicação de Dados','Parametrização de Tributos','Ecommerce','Tabelas de Preço'],
+      2: []
     };
+    // Distribuição: API de boleto no Standard
+    planos[1].push('Boleto API: Banco Sicoob','Boleto API: Banco Inter','Boleto API: Banco Santander','Boleto API: Sicredi');
+    // Premium relativas (exemplo todas as restantes não listadas acima)
+    planos[2] = ['ZPOS','Cadastros Gerais','Cadastro de Kits','Fiscal - Perfil de Tributação','Suporte a Certificado A3','Tabela de Preço por Cliente','Etiquetas Personalizadas','Tabelas de Preço por Produto','Cadastro de Grades','Retaguarda Offline','Plano de Contas','DRE Simplificado','PIX Dinâmico: Banco Sicoob','Envio Automático para Contador'];
+
     const featurePlan = {};
     Object.entries(planos).forEach(([planIdx, feats]) => {
       feats.forEach(f => {
         const idx = parseInt(planIdx);
-        if (!(f in featurePlan) || idx < featurePlan[f]) featurePlan[f] = idx;
+        featurePlan[f] = idx;
       });
     });
+
     const featureInputs = document.querySelectorAll('.features input[type=checkbox]');
     const numUsers = document.getElementById('numUsers');
     const planNameCell = document.getElementById('planName');
     const planPriceCell = document.getElementById('planPrice');
-    const fileBtn = document.getElementById('fileBtn');
+    const whatsappBtn = document.getElementById('whatsappBtn');
     let latestMessage = '';
+
     function calculatePlan() {
       let requiredPlan = 0;
       const selected = [];
@@ -136,7 +126,7 @@
       featureInputs.forEach(i => {
         if (i.checked) {
           selected.push(i.value);
-          const req = featurePlan[i.value] || 0;
+          const req = featurePlan[i.value] !== undefined ? featurePlan[i.value] : 0;
           requiredPlan = Math.max(requiredPlan, req);
         }
       });
@@ -144,19 +134,18 @@
       const price = planPrices[requiredPlan];
       planNameCell.textContent = plan;
       planPriceCell.textContent = price;
-      latestMessage = `Plano ideal: ${plan} (R$ ${price})\nFuncionalidades: ${selected.join(', ')}`;
-      fileBtn.style.display = selected.length ? 'block' : 'none';
+      latestMessage = `Olá, gostaria do plano ${plan} (R$ ${price}) com as seguintes funcionalidades: ${selected.join(', ')}`;
+      whatsappBtn.style.display = selected.length ? 'block' : 'none';
     }
-    function generateFile() {
-      const blob = new Blob([latestMessage], { type: 'text/plain' });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = 'plano.txt';
-      link.click();
+
+    function sendWhatsApp() {
+      const url = `https://wa.me/558496115650?text=${encodeURIComponent(latestMessage)}`;
+      window.open(url, '_blank');
     }
+
     numUsers.addEventListener('change', calculatePlan);
     featureInputs.forEach(i => i.addEventListener('change', calculatePlan));
-    fileBtn.addEventListener('click', generateFile);
+    whatsappBtn.addEventListener('click', sendWhatsApp);
   </script>
 </body>
 </html>
