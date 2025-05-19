@@ -19,6 +19,7 @@
 
   <form id="catalogForm">
     <div class="features">
+      <!-- Lista completa de funcionalidades em duas colunas -->
       <label><input type="checkbox" value="Dashboard"> Dashboard</label>
       <label><input type="checkbox" value="Boleto/Remessa"> Boleto/Remessa</label>
       <label><input type="checkbox" value="Número de Usuários"> Número de Usuários</label>
@@ -63,7 +64,7 @@
       <label><input type="checkbox" value="Plano de Contas"> Plano de Contas</label>
       <label><input type="checkbox" value="DRE Simplificado"> DRE Simplificado</label>
       <label><input type="checkbox" value="PIX Dinâmico: Banco Sicoob"> PIX Dinâmico: Banco Sicoob</label>
-      <label><input type="checkbox" value="Envio Automático para Contador (XML de Saída/Entrada, Sintegra e SPED)"> Envio Automático para Contador (XML de Saída/Entrada, Sintegra e SPED)</label>
+      <label><input type="checkbox" value="Envio Automático para Contador"> Envio Automático para Contador (XML de Saída/Entrada, Sintegra e SPED)</label>
     </div>
   </form>
 
@@ -75,13 +76,41 @@
     const standardPrice = 140;
     const premiumPrice = 210;
 
-    const premiumFeatures = [
-      "Integração Mercado Livre","Ecommerce","Parametrização de Tributos","ZPOS","PIX Dinâmico: Banco Sicoob",
-      "Envio Automático para Contador (XML de Saída/Entrada, Sintegra e SPED)"
-    ];
+    // Funcionalidades que disparam cada plano
     const standardFeatures = [
-      "Fluxo de Caixa","Contas a Receber","Contas a Pagar","Importação de XML",
+      "Fluxo de Caixa",
+      "Contas a Receber",
+      "Contas a Pagar",
+      "Importação de XML",
       "Ordem de Compra"
+    ];
+    const premiumFeatures = [
+      "Integração Mercado Livre",
+      "WhatsApp",
+      "Pré Venda Gerencial",
+      "Tela PDV Frente de Caixa",
+      "Replicação de Dados",
+      "Parametrização de Tributos",
+      "Ecommerce",
+      "Tabelas de Preço",
+      "ZPOS",
+      "Cadastros Gerais",
+      "Cadastro de Kits",
+      "Fiscal - Perfil de Tributação",
+      "Suporte a Certificado A3",
+      "Tabela de Preço por Cliente",
+      "Etiquetas Personalizadas",
+      "Tabelas de Preço por Produto",
+      "Cadastro de Grades",
+      "Retaguarda Offline",
+      "Boleto API: Banco Sicoob",
+      "Boleto API: Banco Inter",
+      "Boleto API: Banco Santander",
+      "Boleto API: Sicredi",
+      "Plano de Contas",
+      "DRE Simplificado",
+      "PIX Dinâmico: Banco Sicoob",
+      "Envio Automático para Contador"
     ];
 
     const featureInputs = document.querySelectorAll('.features input[type=checkbox]');
