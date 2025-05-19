@@ -9,7 +9,7 @@
     h1 { text-align: center; }
     .features { column-count: 2; column-gap: 40px; margin-top: 20px; }
     .features label, .features .field { display: block; margin-bottom: 8px; }
-    .field select { width: 100%; padding: 5px; }
+    .field select { width: 100%; padding: 5px; margin-bottom: 16px; }
     #result { margin-top: 20px; font-size: 1.2em; text-align: center; }
     button { display: block; margin: 20px auto; padding: 10px 20px; font-size: 1em; cursor: pointer; }
   </style>
@@ -38,7 +38,41 @@
       <label><input type="checkbox" value="Minhas Notas"> Minhas Notas</label>
       <label><input type="checkbox" value="Portal do Contador"> Portal do Contador</label>
       <label><input type="checkbox" value="Aplicativo para NFCe"> Aplicativo para NFCe</label>
-      <!-- demais checkboxes omitidos para brevidade, mantenha anteriores -->
+      <label><input type="checkbox" value="Fluxo de Caixa"> Fluxo de Caixa</label>
+      <label><input type="checkbox" value="Contas a Receber"> Contas a Receber</label>
+      <label><input type="checkbox" value="Contas a Pagar"> Contas a Pagar</label>
+      <label><input type="checkbox" value="Importação de XML"> Importação de XML</label>
+      <label><input type="checkbox" value="Fator de Conversão"> Fator de Conversão</label>
+      <label><input type="checkbox" value="Ordem de Compra"> Ordem de Compra</label>
+      <label><input type="checkbox" value="Preço Atacado e Varejo"> Preço Atacado e Varejo</label>
+      <label><input type="checkbox" value="Conversão CFOP"> Conversão CFOP</label>
+      <label><input type="checkbox" value="Ordem de Serviço"> Ordem de Serviço</label>
+      <label><input type="checkbox" value="Integração Mercado Livre"> Integração Mercado Livre</label>
+      <label><input type="checkbox" value="WhatsApp"> WhatsApp</label>
+      <label><input type="checkbox" value="Pré Venda Gerencial"> Pré Venda Gerencial</label>
+      <label><input type="checkbox" value="Tela PDV Frente de Caixa"> Tela PDV Frente de Caixa</label>
+      <label><input type="checkbox" value="Replicação de Dados"> Replicação de Dados</label>
+      <label><input type="checkbox" value="Parametrização de Tributos"> Parametrização de Tributos</label>
+      <label><input type="checkbox" value="Ecommerce"> Ecommerce</label>
+      <label><input type="checkbox" value="Tabelas de Preço"> Tabelas de Preço</label>
+      <label><input type="checkbox" value="ZPOS"> ZPOS: Integração Vero, Stone, Rede, PagSeguro, Cielo, Sicredi, Caixa e BIN</label>
+      <label><input type="checkbox" value="Cadastros Gerais"> Cadastros: Clientes, Fornecedores, Transportadoras, Produtos</label>
+      <label><input type="checkbox" value="Cadastro de Kits"> Cadastro de Kits</label>
+      <label><input type="checkbox" value="Fiscal - Perfil de Tributação"> Fiscal - Perfil de Tributação</label>
+      <label><input type="checkbox" value="Suporte a Certificado A3"> Suporte a Certificado A3</label>
+      <label><input type="checkbox" value="Tabela de Preço por Cliente"> Tabela de Preço por Cliente</label>
+      <label><input type="checkbox" value="Etiquetas Personalizadas"> Etiquetas Personalizadas</label>
+      <label><input type="checkbox" value="Tabelas de Preço por Produto"> Tabelas de Preço por Produto</label>
+      <label><input type="checkbox" value="Cadastro de Grades"> Cadastro de Grades</label>
+      <label><input type="checkbox" value="Retaguarda Offline"> Retaguarda Offline (plugin nativo para SC)</label>
+      <label><input type="checkbox" value="Boleto API: Banco Sicoob"> Boleto API: Banco Sicoob</label>
+      <label><input type="checkbox" value="Boleto API: Banco Inter"> Boleto API: Banco Inter</label>
+      <label><input type="checkbox" value="Boleto API: Banco Santander"> Boleto API: Banco Santander</label>
+      <label><input type="checkbox" value="Boleto API: Sicredi"> Boleto API: Sicredi</label>
+      <label><input type="checkbox" value="Plano de Contas"> Plano de Contas</label>
+      <label><input type="checkbox" value="DRE Simplificado"> DRE Simplificado</label>
+      <label><input type="checkbox" value="PIX Dinâmico: Banco Sicoob"> PIX Dinâmico: Banco Sicoob</label>
+      <label><input type="checkbox" value="Envio Automático para Contador"> Envio Automático para Contador (XML de Saída/Entrada, Sintegra e SPED)</label>
     </div>
   </form>
 
@@ -49,7 +83,6 @@
     const planNames = ['Essencial', 'Standard', 'Premium'];
     const planPrices = [100, 140, 210];
 
-    // Mapear exigência mínima de plano para cada funcionalidade
     const planos = {
       0: ['Dashboard','Boleto/Remessa','Orçamento','Pedido de Venda','NFe, NFCe','MFe','Minhas Notas','Portal do Contador','Aplicativo para NFCe'],
       1: ['Fluxo de Caixa','Contas a Receber','Contas a Pagar','Importação de XML','Ordem de Compra','Boleto API: Banco Sicoob','Boleto API: Banco Inter','Boleto API: Banco Santander','Boleto API: Sicredi'],
@@ -72,15 +105,11 @@
     function calculatePlan() {
       let requiredPlan = 0;
       const selected = [];
-
-      // Checa número de usuários
       const nu = parseInt(numUsers.value);
       if (nu > 0) {
         selected.push(`Número de Usuários: ${['01','02','03'][nu]}`);
         requiredPlan = Math.max(requiredPlan, nu);
       }
-
-      // Checa checkboxes
       featureInputs.forEach(i => {
         if (i.checked) {
           selected.push(i.value);
