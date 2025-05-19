@@ -72,46 +72,26 @@
   <button id="fileBtn" style="display:none;">Gerar arquivo de plano</button>
 
   <script>
-    const essentialPrice = 100;
-    const standardPrice = 140;
-    const premiumPrice = 210;
+    const planNames = ['Essencial', 'Standard', 'Premium'];
+    const planPrices = [100, 140, 210];
 
-    // Funcionalidades que disparam cada plano
-    const standardFeatures = [
-      "Fluxo de Caixa",
-      "Contas a Receber",
-      "Contas a Pagar",
-      "Importação de XML",
-      "Ordem de Compra"
-    ];
-    const premiumFeatures = [
-      "Integração Mercado Livre",
-      "WhatsApp",
-      "Pré Venda Gerencial",
-      "Tela PDV Frente de Caixa",
-      "Replicação de Dados",
-      "Parametrização de Tributos",
-      "Ecommerce",
-      "Tabelas de Preço",
-      "ZPOS",
-      "Cadastros Gerais",
-      "Cadastro de Kits",
-      "Fiscal - Perfil de Tributação",
-      "Suporte a Certificado A3",
-      "Tabela de Preço por Cliente",
-      "Etiquetas Personalizadas",
-      "Tabelas de Preço por Produto",
-      "Cadastro de Grades",
-      "Retaguarda Offline",
-      "Boleto API: Banco Sicoob",
-      "Boleto API: Banco Inter",
-      "Boleto API: Banco Santander",
-      "Boleto API: Sicredi",
-      "Plano de Contas",
-      "DRE Simplificado",
-      "PIX Dinâmico: Banco Sicoob",
-      "Envio Automático para Contador"
-    ];
+    // Defina a exigência mínima de plano para cada funcionalidade
+    const featurePlan = {};
+    // Lista de funcionalidades por plano
+    const planos = {
+      0: ['Dashboard','Boleto/Remessa','Número de Usuários','Orçamento','Pedido de Venda','NFe, NFCe','MFe','Minhas Notas','Portal do Contador','Aplicativo para NFCe'],
+      1: ['Fluxo de Caixa','Contas a Receber','Contas a Pagar','Importação de XML','Ordem de Compra','Boleto API: Banco Sicoob','Boleto API: Banco Inter','Boleto API: Banco Santander','Boleto API: Sicredi'],
+      2: ['Integração Mercado Livre','WhatsApp','Pré Venda Gerencial','Tela PDV Frente de Caixa','Replicação de Dados','Parametrização de Tributos','Ecommerce','Tabelas de Preço','ZPOS','Cadastros Gerais','Cadastro de Kits','Fiscal - Perfil de Tributação','Suporte a Certificado A3','Tabela de Preço por Cliente','Etiquetas Personalizadas','Tabelas de Preço por Produto','Cadastro de Grades','Retaguarda Offline','Plano de Contas','DRE Simplificado','PIX Dinâmico: Banco Sicoob','Envio Automático para Contador']
+    };
+    // Preencha featurePlan com o menor plano possível
+    for (const [planIdx, feats] of Object.entries(planos)) {
+      feats.forEach(f => {
+        const idx = parseInt(planIdx);
+        if (!(f in featurePlan) || idx < featurePlan[f]) {
+          featurePlan[f] = idx;
+        }
+      });
+    }
 
     const featureInputs = document.querySelectorAll('.features input[type=checkbox]');
     const resultDiv = document.getElementById('result');
@@ -123,16 +103,15 @@
         .filter(i => i.checked)
         .map(i => i.value);
 
-      let plan = 'Essencial';
-      let price = essentialPrice;
+      // Determine plano mínimo que atende todas as escolhas
+      let requiredPlan = 0;
+      selected.forEach(f => {
+        const req = featurePlan[f] !== undefined ? featurePlan[f] : 0;
+        if (req > requiredPlan) requiredPlan = req;
+      });
 
-      if (selected.some(f => premiumFeatures.includes(f))) {
-        plan = 'Premium';
-        price = premiumPrice;
-      } else if (selected.some(f => standardFeatures.includes(f))) {
-        plan = 'Standard';
-        price = standardPrice;
-      }
+      const plan = planNames[requiredPlan];
+      const price = planPrices[requiredPlan];
 
       latestMessage = `Plano ideal: ${plan} (R$ ${price})\nFuncionalidades: ${selected.join(', ')}`;
       resultDiv.innerHTML = `<p>${latestMessage.replace(/\n/g,'<br>')}</p>`;
