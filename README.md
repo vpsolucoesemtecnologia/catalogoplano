@@ -35,9 +35,8 @@
       <div class="field">
         <label for="numUsers">Número de Usuários:</label>
         <select id="numUsers">
-          <option value="-1">Selecione...</option>
           <option value="0">1 - Essencial</option>
-          <option value="1">3 - Standard</option>
+          <option value="1" selected>3 - Standard</option>
           <option value="2">Ilimitado - Premium</option>
         </select>
       </div>
@@ -115,6 +114,8 @@
     </div>
   </div>
   <script>
+    // Inicializa seleção e cálculo com Standard
+    window.addEventListener('DOMContentLoaded', () => { document.getElementById('numUsers').value = '1'; update(); });
     const planNames=['Essencial','Standard','Premium'],planPrices=[100,140,210];
     const planos={0:['Dashboard','Boleto/Remessa','Orçamento','Pedido de Venda','NFe, NFCe','MFe','Minhas Notas','Portal do Contador','Aplicativo para NFCe','Fluxo de Caixa','Contas a Receber','Contas a Pagar','Importação de XML','Fator de Conversão','Ordem de Compra','Preço Atacado e Varejo','Conversão CFOP'],1:['Ordem de Serviço','Integração Mercado Livre','WhatsApp','Pré Venda Gerencial','Tela PDV Frente de Caixa','Replicação de Dados','Parametrização de Tributos','Ecommerce','Tabelas de Preço','ZPOS','Cadastros Gerais','Cadastro de Kits','Fiscal - Perfil de Tributação','Suporte a Certificado A3','Tabela de Preço por Cliente','Etiquetas Personalizadas','Tabelas de Preço por Produto','Cadastro de Grades','Retaguarda Offline','Plano de Contas','DRE Simplificado'],2:['PIX Dinâmico: Banco Sicoob','Envio Automático para Contador','Boleto Sicoob','Boleto Inter','Boleto Santander','Boleto Sicredi']};
     const featurePlan={};Object.entries(planos).forEach(([pi,fe])=>fe.forEach(f=>featurePlan[f]=+pi));
