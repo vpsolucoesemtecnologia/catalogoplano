@@ -10,10 +10,11 @@
     .features { flex: 1 1 60%; padding: 20px; }
     .features h1 { margin-bottom: 10px; }
     .features p { margin-bottom: 20px; }
+    .field { margin-bottom: 16px; }
+    .field select { width: 100%; padding: 5px; }
     .two-columns { display: flex; gap: 20px; }
     .column { flex: 1; }
-    .column label, .features .field { display: block; margin-bottom: 8px; }
-    .field select { width: 100%; padding: 5px; margin-bottom: 16px; }
+    .column label { display: block; margin-bottom: 8px; }
     .sidebar { flex: 1 1 35%; background: #ffffff; padding: 20px; margin: 20px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); position: sticky; top: 20px; height: fit-content; }
     .sidebar h2 { margin-top: 0; text-align: center; }
     .plan-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
@@ -40,6 +41,7 @@
         <div class="column">
           <label><input type="checkbox" value="Dashboard"> Dashboard</label>
           <label><input type="checkbox" value="Boleto/Remessa"> Boleto/Remessa</label>
+          <label><input type="checkbox" value="Número de Usuários"> Número de Usuários</label>
           <label><input type="checkbox" value="Orçamento"> Orçamento</label>
           <label><input type="checkbox" value="Pedido de Venda"> Pedido de Venda</label>
           <label><input type="checkbox" value="NFe, NFCe"> NFe, NFCe</label>
@@ -49,18 +51,41 @@
           <label><input type="checkbox" value="Aplicativo para NFCe"> Aplicativo para NFCe</label>
           <label><input type="checkbox" value="Fluxo de Caixa"> Fluxo de Caixa</label>
           <label><input type="checkbox" value="Contas a Receber"> Contas a Receber</label>
-        </div>
-        <div class="column">
           <label><input type="checkbox" value="Contas a Pagar"> Contas a Pagar</label>
           <label><input type="checkbox" value="Importação de XML"> Importação de XML</label>
           <label><input type="checkbox" value="Fator de Conversão"> Fator de Conversão</label>
           <label><input type="checkbox" value="Ordem de Compra"> Ordem de Compra</label>
           <label><input type="checkbox" value="Preço Atacado e Varejo"> Preço Atacado e Varejo</label>
           <label><input type="checkbox" value="Conversão CFOP"> Conversão CFOP</label>
+        </div>
+        <div class="column">
           <label><input type="checkbox" value="Ordem de Serviço"> Ordem de Serviço</label>
-          <label><input type="checkbox" value="Integração Mercado Livre"> Integração Mercado Livre</label>
+          <label><input type="checkbox" value="Mercado Livre"> Integração Mercado Livre</label>
           <label><input type="checkbox" value="WhatsApp"> WhatsApp</label>
           <label><input type="checkbox" value="Pré Venda Gerencial"> Pré Venda Gerencial</label>
+          <label><input type="checkbox" value="Tela PDV Frente de Caixa"> Tela PDV Frente de Caixa</label>
+          <label><input type="checkbox" value="Replicação de Dados"> Replicação de Dados</label>
+          <label><input type="checkbox" value="Parametrização de Tributos"> Parametrização de Tributos</label>
+          <label><input type="checkbox" value="Ecommerce"> Ecommerce</label>
+          <label><input type="checkbox" value="Tabelas de Preço"> Tabelas de Preço</label>
+          <label><input type="checkbox" value="ZPOS"> ZPOS: Integração Vero, Stone, Rede, PagSeguro, Cielo, Sicredi, Caixa e BIN</label>
+          <label><input type="checkbox" value="Cadastros Gerais"> Cadastros: Clientes, Fornecedores, Transportadoras, Produtos</label>
+          <label><input type="checkbox" value="Cadastro de Kits"> Cadastro de Kits</label>
+          <label><input type="checkbox" value="Fiscal - Perfil de Tributação"> Fiscal - Perfil de Tributação</label>
+          <label><input type="checkbox" value="Suporte a Certificado A3"> Suporte a Certificado A3</label>
+          <label><input type="checkbox" value="Tabela de Preço por Cliente"> Tabela de Preço por Cliente</label>
+          <label><input type="checkbox" value="Etiquetas Personalizadas"> Etiquetas Personalizadas</label>
+          <label><input type="checkbox" value="Tabelas de Preço por Produto"> Tabelas de Preço por Produto</label>
+          <label><input type="checkbox" value="Cadastro de Grades"> Cadastro de Grades</label>
+          <label><input type="checkbox" value="Retaguarda Offline"> Retaguarda Offline (plugin nativo para SC)</label>
+          <label><input type="checkbox" value="Boleto API Sicoob"> Boleto API: Banco Sicoob</label>
+          <label><input type="checkbox" value="Boleto API Inter"> Boleto API: Banco Inter</label>
+          <label><input type="checkbox" value="Boleto API Santander"> Boleto API: Banco Santander</label>
+          <label><input type="checkbox" value="Boleto API Sicredi"> Boleto API: Sicredi</label>
+          <label><input type="checkbox" value="Plano de Contas"> Plano de Contas</label>
+          <label><input type="checkbox" value="DRE Simplificado"> DRE Simplificado</label>
+          <label><input type="checkbox" value="PIX Dinâmico Sicoob"> PIX Dinâmico: Banco Sicoob</label>
+          <label><input type="checkbox" value="Envio Automático Contador"> Envio Automático para Contador (XML de Saída/Entrada, Sintegra e SPED)</label>
         </div>
       </div>
     </div>
@@ -81,11 +106,10 @@
   <script>
     const planNames = ['Essencial', 'Standard', 'Premium'];
     const planPrices = [100, 140, 210];
-
     const planos = {
-      0: ['Dashboard','Boleto/Remessa','Orçamento','Pedido de Venda','NFe, NFCe','MFe','Minhas Notas','Portal do Contador','Aplicativo para NFCe','Fluxo de Caixa','Contas a Receber'],
-      1: ['Contas a Pagar','Importação de XML','Fator de Conversão','Ordem de Compra','Preço Atacado e Varejo','Conversão CFOP','Ordem de Serviço','Integração Mercado Livre','WhatsApp','Pré Venda Gerencial'],
-      2: ['Tela PDV Frente de Caixa','Replicação de Dados','Parametrização de Tributos','Ecommerce','Tabelas de Preço','ZPOS','Cadastros Gerais','Cadastro de Kits','Fiscal - Perfil de Tributação','Suporte a Certificado A3','Tabela de Preço por Cliente','Etiquetas Personalizadas','Tabelas de Preço por Produto','Cadastro de Grades','Retaguarda Offline','Plano de Contas','DRE Simplificado','PIX Dinâmico: Banco Sicoob','Envio Automático para Contador','Boleto API: Banco Sicoob','Boleto API: Banco Inter','Boleto API: Banco Santander','Boleto API: Sicredi']
+      0: ['Dashboard','Boleto/Remessa','Número de Usuários','Orçamento','Pedido de Venda','NFe, NFCe','MFe','Minhas Notas','Portal do Contador','Aplicativo para NFCe','Fluxo de Caixa','Contas a Receber','Contas a Pagar','Importação de XML','Fator de Conversão','Ordem de Compra','Preço Atacado e Varejo','Conversão CFOP'],
+      1: ['Ordem de Serviço','Integração Mercado Livre','WhatsApp','Pré Venda Gerencial','Tela PDV Frente de Caixa','Replicação de Dados','Parametrização de Tributos','Ecommerce','Tabelas de Preço','ZPOS','Cadastros Gerais','Cadastro de Kits','Fiscal - Perfil de Tributação','Suporte a Certificado A3','Tabela de Preço por Cliente','Etiquetas Personalizadas','Tabelas de Preço por Produto','Cadastro de Grades','Retaguarda Offline','Plano de Contas','DRE Simplificado','PIX Dinâmico: Banco Sicoob','Envio Automático Contador'],
+      2: ['Boleto API: Banco Sicoob','Boleto API: Banco Inter','Boleto API: Banco Santander','Boleto API: Sicredi']
     };
     const featurePlan = {};
     Object.entries(planos).forEach(([planIdx, feats]) => {
@@ -94,14 +118,12 @@
         if (!(f in featurePlan) || idx < featurePlan[f]) featurePlan[f] = idx;
       });
     });
-
     const featureInputs = document.querySelectorAll('.features input[type=checkbox]');
     const numUsers = document.getElementById('numUsers');
     const planNameCell = document.getElementById('planName');
     const planPriceCell = document.getElementById('planPrice');
     const fileBtn = document.getElementById('fileBtn');
     let latestMessage = '';
-
     function calculatePlan() {
       let requiredPlan = 0;
       const selected = [];
@@ -125,7 +147,6 @@
       latestMessage = `Plano ideal: ${plan} (R$ ${price})\nFuncionalidades: ${selected.join(', ')}`;
       fileBtn.style.display = selected.length ? 'block' : 'none';
     }
-
     function generateFile() {
       const blob = new Blob([latestMessage], { type: 'text/plain' });
       const link = document.createElement('a');
@@ -133,11 +154,9 @@
       link.download = 'plano.txt';
       link.click();
     }
-
     numUsers.addEventListener('change', calculatePlan);
     featureInputs.forEach(i => i.addEventListener('change', calculatePlan));
     fileBtn.addEventListener('click', generateFile);
   </script>
 </body>
 </html>
-```
