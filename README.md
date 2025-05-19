@@ -54,10 +54,10 @@
           <label><input type="checkbox" value="Importação de XML"> Importação de XML</label>
           <label><input type="checkbox" value="Fator de Conversão"> Fator de Conversão</label>
           <label><input type="checkbox" value="Ordem de Compra"> Ordem de Compra</label>
-          <label><input type="checkbox" value="Preço Atacado e Varejo"> Preço Atacado e Varejo</label>
-          <label><input type="checkbox" value="Conversão CFOP"> Conversão CFOP</label>
         </div>
         <div class="column">
+          <label><input type="checkbox" value="Preço Atacado e Varejo"> Preço Atacado e Varejo</label>
+          <label><input type="checkbox" value="Conversão CFOP"> Conversão CFOP</label>
           <label><input type="checkbox" value="Ordem de Serviço"> Ordem de Serviço</label>
           <label><input type="checkbox" value="Integração Mercado Livre"> Integração Mercado Livre</label>
           <label><input type="checkbox" value="WhatsApp"> WhatsApp</label>
@@ -71,101 +71,65 @@
           <label><input type="checkbox" value="Cadastros Gerais"> Cadastros: Clientes, Fornecedores, Transportadoras, Produtos</label>
           <label><input type="checkbox" value="Cadastro de Kits"> Cadastro de Kits</label>
           <label><input type="checkbox" value="Fiscal - Perfil de Tributação"> Fiscal - Perfil de Tributação</label>
+        </div>
+      </div>
+      <div class="two-columns">
+        <div class="column">
           <label><input type="checkbox" value="Suporte a Certificado A3"> Suporte a Certificado A3</label>
           <label><input type="checkbox" value="Tabela de Preço por Cliente"> Tabela de Preço por Cliente</label>
           <label><input type="checkbox" value="Etiquetas Personalizadas"> Etiquetas Personalizadas</label>
           <label><input type="checkbox" value="Tabelas de Preço por Produto"> Tabelas de Preço por Produto</label>
           <label><input type="checkbox" value="Cadastro de Grades"> Cadastro de Grades</label>
           <label><input type="checkbox" value="Retaguarda Offline"> Retaguarda Offline</label>
+          <label><input type="checkbox" value="Plano de Contas"> Plano de Contas</label>
+          <label><input type="checkbox" value="DRE Simplificado"> DRE Simplificado</label>
+        </div>
+        <div class="column">
+          <label><input type="checkbox" value="PIX Dinâmico: Banco Sicoob"> PIX Dinâmico Sicoob</label>
+          <label><input type="checkbox" value="Envio Automático para Contador"> Envio Automático para Contador</label>
           <label><input type="checkbox" value="Boleto API: Banco Sicoob"> Boleto API Sicoob</label>
           <label><input type="checkbox" value="Boleto API: Banco Inter"> Boleto API Inter</label>
           <label><input type="checkbox" value="Boleto API: Banco Santander"> Boleto API Santander</label>
           <label><input type="checkbox" value="Boleto API: Sicredi"> Boleto API Sicredi</label>
-          <label><input type="checkbox" value="Plano de Contas"> Plano de Contas</label>
-          <label><input type="checkbox" value="DRE Simplificado"> DRE Simplificado</label>
-          <label><input type="checkbox" value="PIX Dinâmico: Banco Sicoob"> PIX Dinâmico Sicoob</label>
-          <label><input type="checkbox" value="Envio Automático para Contador"> Envio Automático para Contador</label>
         </div>
       </div>
     </div>
     <div class="sidebar">
       <h2>Seu Plano</h2>
       <table class="plan-table">
-        <thead>
-          <tr><th>Plano</th><th>Preço (R$)</th></tr>
-        </thead>
-        <tbody>
-          <tr><td id="planName">-</td><td id="planPrice">-</td></tr>
-        </tbody>
+        <thead><tr><th>Plano</th><th>Preço (R$)</th></tr></thead>
+        <tbody><tr><td id="planName">-</td><td id="planPrice">-</td></tr></tbody>
       </table>
       <button id="whatsappBtn" class="whatsapp-btn" style="display:none;">Enviar no WhatsApp</button>
     </div>
   </div>
-
   <script>
-    const planNames = ['Essencial', 'Standard', 'Premium'];
-    const planPrices = [100, 140, 210];
-
+    const planNames = ['Essencial','Standard','Premium'];
+    const planPrices = [100,140,210];
     const planos = {
-      0: [
-        'Dashboard','Boleto/Remessa','Orçamento','Pedido de Venda','NFe, NFCe','MFe','Minhas Notas','Portal do Contador','Aplicativo para NFCe','Fluxo de Caixa','Contas a Receber','Contas a Pagar','Importação de XML','Fator de Conversão','Ordem de Compra','Preço Atacado e Varejo','Conversão CFOP'
-      ],
-      1: [
-        'Ordem de Serviço','Integração Mercado Livre','WhatsApp','Pré Venda Gerencial','Tela PDV Frente de Caixa','Replicação de Dados','Parametrização de Tributos','Ecommerce','Tabelas de Preço','ZPOS','Cadastros Gerais','Cadastro de Kits','Fiscal - Perfil de Tributação','Suporte a Certificado A3','Tabela de Preço por Cliente','Etiquetas Personalizadas','Tabelas de Preço por Produto','Cadastro de Grades','Retaguarda Offline','Boleto API: Banco Sicoob','Boleto API: Banco Inter','Boleto API: Banco Santander','Boleto API: Sicredi','Plano de Contas','DRE Simplificado','PIX Dinâmico: Banco Sicoob','Envio Automático para Contador'
-      ],
-      2: []
+      0:['Dashboard','Boleto/Remessa','Orçamento','Pedido de Venda','NFe, NFCe','MFe','Minhas Notas','Portal do Contador','Aplicativo para NFCe','Fluxo de Caixa','Contas a Receber','Contas a Pagar','Importação de XML','Fator de Conversão','Ordem de Compra','Preço Atacado e Varejo','Conversão CFOP'],
+      1:['Ordem de Serviço','Integração Mercado Livre','WhatsApp','Pré Venda Gerencial','Tela PDV Frente de Caixa','Replicação de Dados','Parametrização de Tributos','Ecommerce','Tabelas de Preço','ZPOS','Cadastros Gerais','Cadastro de Kits','Fiscal - Perfil de Tributação','Suporte a Certificado A3','Tabela de Preço por Cliente','Etiquetas Personalizadas','Tabelas de Preço por Produto','Cadastro de Grades','Retaguarda Offline','Plano de Contas','DRE Simplificado'],
+      2:['PIX Dinâmico: Banco Sicoob','Envio Automático para Contador','Boleto API Sicoob','Boleto API Inter','Boleto API Santander','Boleto API Sicredi']
     };
-
-    const featurePlan = {};
-    Object.entries(planos).forEach(([planIdx, feats]) => {
-      feats.forEach(f => {
-        featurePlan[f] = parseInt(planIdx);
-      });
-    });
-
-    const featureInputs = document.querySelectorAll('.features input[type=checkbox]');
-    const numUsers = document.getElementById('numUsers');
-    const planNameCell = document.getElementById('planName');
-    const planPriceCell = document.getElementById('planPrice');
-    const whatsappBtn = document.getElementById('whatsappBtn');
-    let latestMessage = '';
-
-    function calculatePlan() {
-      let requiredPlan = 0;
-      const selected = [];
-
-      const nu = parseInt(numUsers.value);
-      if (nu >= 0) {
-        const userText = numUsers.options[numUsers.selectedIndex].text;
-        selected.push(`Número de Usuários: ${userText}`);
-        requiredPlan = Math.max(requiredPlan, nu);
-      }
-
-      featureInputs.forEach(i => {
-        if (i.checked) {
-          selected.push(i.value);
-          const req = featurePlan[i.value] || 0;
-          requiredPlan = Math.max(requiredPlan, req);
-        }
-      });
-
-      const plan = planNames[requiredPlan];
-      const price = planPrices[requiredPlan];
-      planNameCell.textContent = plan;
-      planPriceCell.textContent = price;
-
-      latestMessage = `Olá, gostaria do plano ${plan} (R$ ${price}) com as seguintes funcionalidades: ${selected.join(', ')}`;
-      whatsappBtn.style.display = selected.length ? 'block' : 'none';
+    const featurePlan={};Object.entries(planos).forEach(([pi,fe])=>fe.forEach(f=>featurePlan[f]=+pi));
+    const featureInputs=document.querySelectorAll('.features input[type=checkbox]');
+    const numUsers=document.getElementById('numUsers');
+    const planNameCell=document.getElementById('planName');
+    const planPriceCell=document.getElementById('planPrice');
+    const whatsappBtn=document.getElementById('whatsappBtn');
+    let latestMessage='';
+    function calculatePlan(){
+      let rp=0;const sel=[];const nu=parseInt(numUsers.value);
+      if(nu>=0){sel.push(`Número de Usuários: ${numUsers.options[numUsers.selectedIndex].text}`);rp=Math.max(rp,nu)};
+      featureInputs.forEach(i=>i.checked&&(sel.push(i.value),rp=Math.max(rp,featurePlan[i.value]||0)));
+      const p=planNames[rp],pr=planPrices[rp];planNameCell.textContent=p;planPriceCell.textContent=pr;
+      latestMessage=`Olá, gostaria do plano ${p} (R$ ${pr}) com: ${sel.join(', ')}`;
+      whatsappBtn.style.display=sel.length?'block':'none';
     }
-
-    function sendWhatsApp() {
-      const url = `https://wa.me/558496115650?text=${encodeURIComponent(latestMessage)}`;
-      window.open(url, '_blank');
-    }
-
-    numUsers.addEventListener('change', calculatePlan);
-    featureInputs.forEach(i => i.addEventListener('change', calculatePlan));
-    whatsappBtn.addEventListener('click', sendWhatsApp);
+    function sendWhatsApp(){window.open(`https://wa.me/558496115650?text=${encodeURIComponent(latestMessage)}`,'_blank')}
+    numUsers.addEventListener('change',calculatePlan);
+    featureInputs.forEach(i=>i.addEventListener('change',calculatePlan));
+    whatsappBtn.addEventListener('click',sendWhatsApp);
   </script>
 </body>
 </html>
